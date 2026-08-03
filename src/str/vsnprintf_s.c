@@ -524,6 +524,11 @@ static size_t safec_ftoa(out_fct_type out, const char *funcname, char *buffer,
     } else if ((frac == 0U) || (frac & 1U)) {
         // if halfway, round up if odd OR if last digit is 0
         ++frac;
+        // handle rollover, e.g. case 0.95 with prec 1 is 1.0
+        if (frac >= pow10[prec]) {
+            frac = 0;
+            ++whole;
+        }
     }
 
     if (prec == 0U) {

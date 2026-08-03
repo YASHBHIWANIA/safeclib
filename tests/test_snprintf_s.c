@@ -91,9 +91,13 @@ int test_snprintf_s(void) {
 
     /*--------------------------------------------------*/
 
+    str1[0] = '\0';
+    rc = snprintf_s(str1, 32, "%0.1f", 1.95);
+    ERR(3);
+    EXPSTR_OR(str1, "2.0", "1.9"); /* proper rounding: GH #170 */
+
     strcpy(str1, "123456");
     strcpy(str2, "keep it simple");
-
     // note: compare to the insecure variant
     rc = snprintf(str1, 1, "%s", str2);
     /* number of characters (not including the terminating NUL character)

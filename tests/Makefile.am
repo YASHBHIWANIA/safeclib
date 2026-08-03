@@ -35,6 +35,7 @@ SAFEC_BUILT_TESTS = \
 	t_memset_s      \
 	t_sprintf_s     \
 	t_sprintf_s_exc \
+	t_snprintf_s	\
 	t_strcat_s      \
 	t_strcpy_s      \
 	t_strncat_s     \
@@ -42,6 +43,7 @@ SAFEC_BUILT_TESTS = \
 	t_strnlen_s     \
 	t_strtok_s      \
 	t_vsprintf_s	\
+	t_vsnprintf_s   \
 	t_sscanf_s	\
 	t_strerror_s	\
 	t_strerrorlen_s
@@ -98,8 +100,6 @@ SAFEC_BUILT_TESTS += \
 	t_tmpnam_s
 if ENABLE_WCHAR
 SAFEC_BUILT_TESTS += \
-	t_snprintf_s	\
-	t_vsnprintf_s   \
 	t_snwprintf_s	\
 	t_vsnwprintf_s
 endif
@@ -306,6 +306,7 @@ t_sprintf_s_SOURCES           = test_sprintf_s.c $(SAFEC_TEST_COMMON) \
 	                        $(SAFEC_TEST_MSVCRT)
 t_sprintf_s_exc_SOURCES       = test_sprintf_s_exc.c $(SAFEC_TEST_COMMON) \
 	                        $(SAFEC_TEST_MSVCRT)
+t_snprintf_s_SOURCES          = test_snprintf_s.c $(SAFEC_TEST_COMMON)
 t_sprintf_s_exc_LDFLAGS       = $(LDADD) -lm
 t_strcat_s_SOURCES            = test_strcat_s.c $(SAFEC_TEST_COMMON) \
 	                        $(SAFEC_TEST_MSVCRT)
@@ -320,6 +321,8 @@ t_strnlen_s_SOURCES           = test_strnlen_s.c $(SAFEC_TEST_COMMON)
 t_strtok_s_SOURCES            = test_strtok_s.c $(SAFEC_TEST_COMMON) \
 	                        $(SAFEC_TEST_MSVCRT)
 t_vsprintf_s_SOURCES          = test_vsprintf_s.c $(SAFEC_TEST_COMMON) \
+	                        $(SAFEC_TEST_MSVCRT)
+t_vsnprintf_s_SOURCES         = test_vsnprintf_s.c $(SAFEC_TEST_COMMON) \
 	                        $(SAFEC_TEST_MSVCRT)
 t_sscanf_s_SOURCES            = test_sscanf_s.c $(SAFEC_TEST_COMMON) \
 	                        $(SAFEC_TEST_MSVCRT)
@@ -494,9 +497,6 @@ if ENABLE_UNSAFE
 t_tmpnam_s_SOURCES            = test_tmpnam_s.c $(SAFEC_TEST_COMMON) \
 	                        $(SAFEC_TEST_MSVCRT)
 if ENABLE_WCHAR
-t_snprintf_s_SOURCES          = test_snprintf_s.c $(SAFEC_TEST_COMMON)
-t_vsnprintf_s_SOURCES         = test_vsnprintf_s.c $(SAFEC_TEST_COMMON) \
-	                        $(SAFEC_TEST_MSVCRT)
 t_snwprintf_s_SOURCES         = test_snwprintf_s.c $(SAFEC_TEST_COMMON)
 t_vsnwprintf_s_SOURCES        = test_vsnwprintf_s.c $(SAFEC_TEST_COMMON)
 endif
